@@ -1,0 +1,23 @@
+development:
+  paypal:
+    mode: "test"
+    email: ""
+    login: ""
+    password: ""
+    signature: ""
+  alipay:
+    key: ""
+    account: ""
+    email: ""
+
+production:
+  paypal:
+    mode: "production"
+    email: ""
+    login: ""
+    password: ""
+    signature: ""
+  alipay:
+    key: ""
+    account: ""
+    email: ""
