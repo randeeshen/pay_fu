@@ -5,7 +5,7 @@ module PayFu
     def notify
       notify = Paypal::Notification.new(request.raw_post)
       if notify.acknowledge
-        if transaction = PayFu::PaypalTransaction.find_by_transaction_id(notify.transaction_id)
+        if transaction = PayFu::PaypalTransaction.find_by_trade_no(notify.transaction_id)
           transaction.update_attributes(transaction_attributes(notify))
         else
           PayFu::PaypalTransaction.create(transaction_attributes(notify))
@@ -16,11 +16,11 @@ module PayFu
 
     def transaction_attributes(notify)
       @transaction_attributes ||= {
-        :transaction_id => notify.transaction_id,
-        :transaction_type => notify.type,
-        :payment_status => notify.status,
-        :payment_date => notify.received_at,
-        :gross => notify.gross_cents,
+        :trade_no => notify.transaction_id,
+        :payment_type => notify.type,
+        :trade_status => notify.status,
+        :notify_time => notify.received_at,
+        :total_fee => notify.gross_cents,
         :raw_post => notify.raw
       }
     end
