@@ -28,7 +28,7 @@ module PayFu
       sign = Digest::MD5.hexdigest(query_string + ActiveMerchant::Billing::Integrations::Alipay::KEY)
       query_string += "&sign=#{sign}&sign_type=MD5"
 
-      redirect_to 'https://mapi.alipay.com/gateway.do?' + query_string
+      redirect_to URI.escape('https://mapi.alipay.com/gateway.do?' + query_string)
     end
 
     def redirect_to_alipay_fast_login_gateway(options={})
@@ -43,7 +43,8 @@ module PayFu
       sign = Digest::MD5.hexdigest(query_string + ActiveMerchant::Billing::Integrations::Alipay::KEY)
       query_string += "&sign=#{sign}&sign_type=MD5"
 
-      redirect_to 'https://mapi.alipay.com/gateway.do?' + query_string
+      redirect_to URI.escape('https://mapi.alipay.com/gateway.do?' + query_string)
     end
+
   end
 end
